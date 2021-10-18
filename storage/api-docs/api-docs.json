@@ -1,0 +1,447 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Fazendinha em Casa - Avaliação | Api Documentation",
+        "description": "Swagger OpenApi description",
+        "contact": {
+            "email": "eduardo0310pvh@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000/api",
+            "description": "Demo API Server"
+        }
+    ],
+    "paths": {
+        "/articles": {
+            "get": {
+                "tags": [
+                    "Articles"
+                ],
+                "summary": "Get list of articles",
+                "description": "Returns list of articles",
+                "operationId": "getArticlesList",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ArticleResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Articles"
+                ],
+                "summary": "Store new article",
+                "description": "Returns article data",
+                "operationId": "storeArticle",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ArticleRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "App/Docs/Resources/ArticleResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+                }
+            }
+        },
+        "/articles/{id}": {
+            "get": {
+                "tags": [
+                    "Articles"
+                ],
+                "summary": "Get article information",
+                "description": "Returns article data",
+                "operationId": "getProjectById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "article id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Article"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Articles"
+                ],
+                "summary": "Update an article",
+                "description": "Returns article data",
+                "operationId": "updateArticle",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Article id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ArticleRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "App/Docs/Resources/ArticleResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Articles"
+                ],
+                "summary": "Delete existing article",
+                "description": "Deletes a record and returns no content",
+                "operationId": "deleteArticle",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Article id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Article": {
+                "title": "Article",
+                "description": "Article model",
+                "properties": {
+                    "id": {
+                        "title": "ID",
+                        "description": "ID",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "featured": {
+                        "title": "Featured",
+                        "description": "Define if article is featured",
+                        "type": "string",
+                        "example": "A nice article"
+                    },
+                    "title": {
+                        "title": "Title",
+                        "description": "Title of the article",
+                        "type": "string",
+                        "example": "This is a title"
+                    },
+                    "url": {
+                        "title": "Url",
+                        "description": "url of the article",
+                        "type": "string",
+                        "example": "http://example.com.br/posts/bla-bla-bla"
+                    },
+                    "imageUrl": {
+                        "title": "Image url",
+                        "description": "url of banner article",
+                        "type": "string",
+                        "example": "http://example.com.br/storage/images/bla-bla-bla.jpg"
+                    },
+                    "newsSite": {
+                        "title": "News site",
+                        "description": "Name of news site",
+                        "type": "string",
+                        "example": "NASA"
+                    },
+                    "summary": {
+                        "title": "Summary",
+                        "description": "Summary of the new article",
+                        "type": "string",
+                        "example": "This is new article's summary"
+                    },
+                    "publishedAt": {
+                        "title": "published at",
+                        "description": "published at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "lauches": {
+                        "title": "Lauches",
+                        "description": "Article lauches",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Lauch"
+                        }
+                    },
+                    "events": {
+                        "title": "Events",
+                        "description": "Article events",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Event"
+                        }
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Article"
+                }
+            },
+            "Event": {
+                "title": "Event",
+                "description": "Event model",
+                "properties": {
+                    "id": {
+                        "title": "ID",
+                        "description": "ID",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "provider": {
+                        "title": "Provider",
+                        "description": "Provider of the event",
+                        "type": "string",
+                        "example": "This is a provider"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Event"
+                }
+            },
+            "Lauch": {
+                "title": "Lauch",
+                "description": "Lauch model",
+                "properties": {
+                    "id": {
+                        "title": "ID",
+                        "description": "ID",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "provider": {
+                        "title": "Provider",
+                        "description": "Provider of the lauch",
+                        "type": "string",
+                        "example": "This is a provider"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Lauch"
+                }
+            },
+            "ArticleRequest": {
+                "title": "Store Article request",
+                "description": "Store Article request body data",
+                "required": [
+                    "title",
+                    "url",
+                    "summary",
+                    "url",
+                    "newsSite",
+                    "imageUrl"
+                ],
+                "properties": {
+                    "title": {
+                        "title": "Title",
+                        "description": "Title of the article",
+                        "type": "string",
+                        "example": "This is a title"
+                    },
+                    "url": {
+                        "title": "Url",
+                        "description": "url of the article",
+                        "type": "string",
+                        "example": "http://example.com.br/posts/bla-bla-bla"
+                    },
+                    "imageUrl": {
+                        "title": "Image url",
+                        "description": "url of banner article",
+                        "type": "string",
+                        "example": "http://example.com.br/storage/images/bla-bla-bla.jpg"
+                    },
+                    "newsSite": {
+                        "title": "News site",
+                        "description": "Name of news site",
+                        "type": "string",
+                        "example": "NASA"
+                    },
+                    "summary": {
+                        "title": "Summary",
+                        "description": "Summary of the new article",
+                        "type": "string",
+                        "example": "This is new article's summary"
+                    },
+                    "publishedAt": {
+                        "title": "published at",
+                        "description": "published at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "lauches": {
+                        "title": "Lauches",
+                        "description": "Article lauches",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Lauch"
+                        }
+                    },
+                    "events": {
+                        "title": "Events",
+                        "description": "Article events",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Event"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "ArticleResource": {
+                "title": "ArticleResource",
+                "description": "Article resource",
+                "properties": {
+                    "data": {
+                        "title": "Data",
+                        "description": "Data wrapper",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Article"
+                        }
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "ArticleResource"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Articles",
+            "description": "API Endpoints of Articles"
+        }
+    ],
+    "security": [
+        []
+    ]
+}
