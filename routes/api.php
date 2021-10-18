@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,3 +19,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/', function () {   
+    return response()->json([
+        'message' => 'Back-end Challenge 2021 🏅 - Space Flight News'
+    ], Response::HTTP_OK);
+});
+
+Route::apiResource('articles', ArticleController::class);
