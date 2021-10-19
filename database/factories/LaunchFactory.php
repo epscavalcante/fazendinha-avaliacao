@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Lauch;
+use App\Models\Launch;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class LauchFactory extends Factory
+class LaunchFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Lauch::class;
+    protected $model = Launch::class;
 
     /**
      * Define the model's default state.

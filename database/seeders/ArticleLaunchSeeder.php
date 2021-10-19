@@ -3,10 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\Article;
-use App\Models\Lauch;
+use App\Models\Launch;
 use Illuminate\Database\Seeder;
 
-class ArticleLauchSeeder extends Seeder
+class ArticleLaunchSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,10 +16,10 @@ class ArticleLauchSeeder extends Seeder
     public function run()
     {
         $articles = Article::inRandomOrder()->limit(10)->get();
-        $lauches = Lauch::inRandomOrder()->limit(10)->get();
+        $launches = Launch::inRandomOrder()->limit(10)->get();
 
-        $articles->each(function (Article $article) use ($lauches) {
-            $article->lauches()->sync($lauches->random());
+        $articles->each(function (Article $article) use ($launches) {
+            $article->launches()->sync($launches->random());
         });
     }
 }

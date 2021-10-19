@@ -32,7 +32,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::with(['lauches', 'events'])->paginate();
+        $articles = Article::with(['launches', 'events'])->paginate();
 
         return ArticleResource::collection($articles);
     }
@@ -115,7 +115,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        $article->load(['lauches', 'events']);
+        $article->load(['launches', 'events']);
 
         return new ArticleResource($article);
     }

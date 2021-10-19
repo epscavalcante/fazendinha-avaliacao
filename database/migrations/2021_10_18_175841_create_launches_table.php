@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateArticleLauchTable extends Migration
+class CreateLaunchesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateArticleLauchTable extends Migration
      */
     public function up()
     {
-        Schema::create('article_lauch', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('article_id');
-            $table->foreignUuid('lauch_id');
+        Schema::create('launches', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->string('provider');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateArticleLauchTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('article_lauch');
+        Schema::dropIfExists('launches');
     }
 }
