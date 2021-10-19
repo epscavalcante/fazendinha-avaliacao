@@ -9,6 +9,16 @@ class Article extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        "featured",
+        "title",
+        "url",
+        "imageUrl",
+        "newsSite",
+        "summary",
+        "publishedAt",
+    ];
+
     protected $casts = [
         'featured' => 'boolean'
     ];
@@ -17,9 +27,9 @@ class Article extends Model
         'publishedAt'
     ];
 
-    public function lauches()
+    public function launches()
     {
-        return $this->belongsToMany(Lauch::class);
+        return $this->belongsToMany(Launch::class);
     }
 
     public function events()

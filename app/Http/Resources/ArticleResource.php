@@ -15,7 +15,7 @@ class ArticleResource extends JsonResource
     public function toArray($request)
     {
         return array_merge(parent::toArray($request), [
-            'lauches' => LauchResource::collection($this->whenLoaded('lauches')),
+            'launches' => LaunchResource::collection($this->whenLoaded('launches')),
             'events' => EventResource::collection($this->whenLoaded('events'))
         ]) ;
     }

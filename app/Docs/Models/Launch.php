@@ -4,14 +4,14 @@ namespace App\Docs\Models;
 
 /**
  * @OA\Schema(
- *     title="Lauch",
- *     description="Lauch model",
+ *     title="Launch",
+ *     description="Launch model",
  *     @OA\Xml(
- *         name="Lauch"
+ *         name="Launch"
  *     )
  * )
  */
-class Lauch
+class Launch
 {
 
     /**
@@ -29,7 +29,7 @@ class Lauch
     /**
      * @OA\Property(
      *      title="Provider",
-     *      description="Provider of the lauch",
+     *      description="Provider of the launch",
      *      example="This is a provider"
      * )
      *

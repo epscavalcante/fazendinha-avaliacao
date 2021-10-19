@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Lauch;
+use App\Models\Launch;
 use Illuminate\Database\Seeder;
 
-class LauchSeeder extends Seeder
+class LaunchSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class LauchSeeder extends Seeder
      */
     public function run()
     {
-        Lauch::factory(3)->create();
+        Launch::factory(3)->create();
     }
 }

@@ -107,13 +107,13 @@ class Article
 
     /**
      * @OA\Property(
-     *     title="Lauches",
-     *     description="Article lauches"
+     *     title="Launches",
+     *     description="Article launches"
      * )
      *
-     * @var \App\Docs\Models\Lauch[]
+     * @var \App\Docs\Models\Launch[]
      */
-    private $lauches;
+    private $launches;
 
     /**
      * @OA\Property(
